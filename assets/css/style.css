@@ -68,6 +68,7 @@ body {
   overflow-x: hidden;
 }
 img { max-width: 100%; display: block; }
+figure, figcaption { margin: 0; }   /* UA default is 1em 40px — it breaks every figure */
 a { color: var(--accent); text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 ul { margin: 0; padding: 0; list-style: none; }
@@ -573,8 +574,9 @@ section + section { margin-top: clamp(3rem, 6vw, 5.5rem); }
   grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
   gap: clamp(1rem, 2vw, 1.7rem);
   align-items: start;
+  justify-items: center;
 }
-.media-2 > * { width: 100%; }
+.media-2 > * { width: 100%; margin-inline: auto; }
 .media-2 .reveal-photo { aspect-ratio: 3 / 4; }
 .media-2 .reveal-photo.land { aspect-ratio: 4 / 3; }
 .media-2 .project-figure { cursor: zoom-in; }
@@ -720,8 +722,13 @@ body.fabs-open #fab-main:hover { transform: rotate(135deg) translateY(-4px) scal
   .rail, .main { grid-column: 1 / -1; }
   .rail-inner { position: static; max-height: none; gap: 1.1rem; }
   .rail-foot { flex-direction: row; gap: 1.2rem; }
+  /* one line: "Perla Makhoul" (nbsp keeps the two halves together) */
+  .brand .name em { display: inline; }
+  .brand .name em::before { content: "\00a0"; }
   .gallery .reveal-photo.wide { grid-column: span 1; aspect-ratio: 4 / 5; }
-  .portrait-solo { max-width: 100%; }
+  /* single column: keep portrait photos from becoming full-width and enormous.
+     Posters stay full width so they read as large as possible before tapping. */
+  .media-2 .reveal-photo { max-width: 430px; }
 }
 @media (max-width: 620px) {
   body { font-size: 16px; }
