@@ -1,0 +1,13 @@
+# OS / editor cruft
+Thumbs.db
+desktop.ini
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# never publish: unpublished graphical abstracts and source documents
+# (these live outside this folder, but guard against them being copied in)
+_unpublished_figures/
+*.docx
+comments*
